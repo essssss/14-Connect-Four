@@ -1,0 +1,40 @@
+Step One: Planning
+
+Before looking at our code, take a few minutes to think about how you would build a game like this using HTML/JS/CSS:
+
+
+*** what HTML would be useful for the game board itself?
+Maybe a series of divs inside a flexbox?
+
+*** how could you represent a played-piece in the HTML board?
+a simple color class for each div. say Red and Blue
+
+*** in the JavaScript, what would be a good structure for the in-memory game board?
+An array of arrays, silly.
+
+*** what might the flow of the game be?
+each turn will consist of a "piece drop" where the player clicks a column and the piece falls as low in the column as it can. The piece is displayed the proper color. The game will check for a winner and if there is no winner it will switch turns.
+
+***Then, write down some functions names/descriptions that would be useful for this game.
+
+A function that takes a click and places the piece on the lowest possible row. 
+checkerDrop()
+
+A function that places the 'checker' in place.
+redChecker()
+blueChecker()
+
+several functions that check for win conditions. 
+--can I do one for all horizontal, one for all vertical, and one for diagonals?
+--do I have to check each possible winning position?
+
+
+
+
+
+
+Step Two: ES2015
+
+This code would benefit from updating to ES2015 style — there are lots of place where var is used that could be changed to either let or const to improve readability. Are there other style fixes you can make?
+
+
