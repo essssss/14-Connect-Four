@@ -38,3 +38,51 @@ Step Two: ES2015
 This code would benefit from updating to ES2015 style — there are lots of place where var is used that could be changed to either let or const to improve readability. Are there other style fixes you can make?
 
 
+Step Three: makeBoard
+
+The makeBoard() function needs to be implemented. It should set the global board variable to be an array of 6 arrays (height), each containing 7 items (width).
+
+You could do this like:
+
+const board = [
+  [ null, null, null, null, null, null, null ],
+  [ null, null, null, null, null, null, null ],
+  [ null, null, null, null, null, null, null ],
+  [ null, null, null, null, null, null, null ],
+  [ null, null, null, null, null, null, null ],
+  [ null, null, null, null, null, null, null ],
+];
+However, it’s far better to make the game flexible about the height and width of the board and use the WIDTH and HEIGHT constants in connect4.js. Implement this function to make this board dynamically.
+
+--empty board arry 
+    const board = []
+
+-- "For" loop over the HEIGHT to create empty rows
+    for(let i=0,i<HEIGHT,i++){
+        board.push(createRow())
+    }
+
+-- "For" loop over the WIDTH to fill the row
+    function createRow() {for(let i=0,i<WIDTH,i++){
+        row1.push(null)
+    }}
+
+
+    //Step Four: makeHTMLBoard
+
+This function is missing the first line, that sets the board variable to the HTML board DOM node. Fix this.
+
+Add comments to the code that dynamically creates the HTML table.
+
+
+
+Step Five: placeInTable & Piece CSS
+
+This function should add a div inside the correct td cell in the HTML game board. This div should have the piece class on it, and should have a class for whether the current player is 1 or 2, like p1 or p2.
+
+Update the CSS file to:
+
+make the piece div round, not square
+be different colors depending on whether it’s a player #1 or #2 piece
+While not everything will work, you should now be able to click on a column and see a piece appear at the very bottom of that column. (They won’t yet appear in the right row and will always be player #1 pieces)
+
