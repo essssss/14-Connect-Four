@@ -9,7 +9,7 @@ const WIDTH = 7;
 const HEIGHT = 6;
 
 let currPlayer = 1; // active player: 1 or 2
-const board = []; // array of rows, each row is array of cells  (board[y][x])
+let board = []; // array of rows, each row is array of cells  (board[y][x])
 
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
@@ -83,7 +83,7 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 0
+  //  write the real version of this, rather than always returning 0
   for (let i = 5; i >= 0; i--) {
     if (board[i][x] === null) return i;
   }
@@ -105,6 +105,12 @@ function placeInTable(y, x) {
 function endGame(msg) {
   //  pop up alert message
   alert(msg);
+  board = [];
+  const playedTiles = document.querySelectorAll(".piece");
+  playedTiles.forEach((tile) => tile.remove());
+  makeBoard();
+  makeHtmlBoard();
+  currPlayer = 1;
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -126,9 +132,9 @@ function handleClick(evt) {
   row[x] = currPlayer;
 
   // check for win
-  // if (checkForWin()) {
-  //   return endGame(`Player ${currPlayer} won!`);
-  // }
+  if (checkForWin()) {
+    return endGame(`Player ${currPlayer} won!`);
+  }
 
   // check for tie
   // check if all cells in board are filled; if so call, call endGame
@@ -141,6 +147,7 @@ function handleClick(evt) {
   }
   // switch players
   // TODO: switch currPlayer 1 <-> 2
+  currPlayer = currPlayer === 1 ? 2 : 1;
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
