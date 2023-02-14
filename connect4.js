@@ -16,14 +16,6 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
-  // const row = [];
-  // for (let i = 0; i < HEIGHT; i++) {
-  //   board.push(row);
-  // }
-  // for (let i = 0; i < WIDTH; i++) {
-  //   row.push(null);
-  // }
-
   /* We need our rows to be different references. 
   therefore we cant just push "row" to the board.
 
@@ -104,13 +96,14 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   //  pop up alert message
-  alert(msg);
-  board = [];
-  const playedTiles = document.querySelectorAll(".piece");
-  playedTiles.forEach((tile) => tile.remove());
-  makeBoard();
-  makeHtmlBoard();
-  currPlayer = 1;
+  setTimeout(() => {
+    alert(msg);
+    board = [];
+    const playedTiles = document.querySelectorAll(".piece");
+    playedTiles.forEach((tile) => tile.remove());
+    makeBoard();
+    currPlayer = 1;
+  }, 500);
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -168,8 +161,11 @@ function checkForWin() {
     );
   }
 
-  // TODO: read and understand this code. Add comments to help you.
+  //  read and understand this code. Add comments to help you.
 
+  //loop through rows, loop through cells
+  //for each starter cell check the next three cells horizontally, vertically, and each diagonal.
+  //plug that array into _win function
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {
       const horiz = [
